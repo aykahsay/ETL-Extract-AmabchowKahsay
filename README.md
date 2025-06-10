@@ -30,9 +30,16 @@ This project demonstrates **Full Extraction** and **Incremental Extraction** in 
 
 ---
 
+## How to Run
+1. Ensure Python and Jupyter are installed
+2. Install required packages: `pip install pandas`
+3. Open the notebook: `jupyter notebook etl_extract.ipynb`
+4. Run all cells sequentially
+
 ### 🧪 How to Reproduce
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/aykahsay/ETL-Extract-AmabchowKahsay.git
    cd ETL-Extract-AmabchowKahsay
+   Source: Downloaded from Kaggle
