@@ -1,7 +1,6 @@
 # ETL Extract Lab
 
 ## Name: Amabchow Kahsay  
-## Student ID: 670550
 
 ---
 
