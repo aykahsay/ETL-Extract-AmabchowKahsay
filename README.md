@@ -1,7 +1,5 @@
 # ETL Extract Lab
 
-## Name: Amabchow Kahsay  
-
 ---
 
 ### 📘 Description
