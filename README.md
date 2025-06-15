@@ -38,7 +38,7 @@ This lab extends the ETL pipeline by applying three transformation techniques:
 Transformed datasets are saved as:
 
 - `transformed_full.csv`
-- `transformed_incremental.csv`
+- `transformed_incremental.csv` No new incremental data to transform.
 
 ## How to Run
 1. Ensure Python and Jupyter are installed
