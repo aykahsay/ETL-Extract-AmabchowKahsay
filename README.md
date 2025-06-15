@@ -27,6 +27,18 @@ This project demonstrates **Full Extraction** and **Incremental Extraction** in 
 | `README.md`            | This documentation                              |
 
 ---
+### 🔄 Transformations (Lab 5)
+
+This lab extends the ETL pipeline by applying three transformation techniques:
+
+1. **Cleaning**: Removed duplicate rows and filled missing values in `unit_price` and `quantity`.
+2. **Enrichment**: Created a new `total_price` column by multiplying `unit_price * quantity`.
+3. **Structural**: Converted the `date` column to a proper datetime format.
+
+Transformed datasets are saved as:
+
+- `transformed_full.csv`
+- `transformed_incremental.csv`
 
 ## How to Run
 1. Ensure Python and Jupyter are installed
