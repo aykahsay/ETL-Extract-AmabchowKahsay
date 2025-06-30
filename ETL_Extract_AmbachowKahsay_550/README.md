@@ -1,92 +1,98 @@
-# ETL Extract Lab
+# 📊 ETL Extract Lab
 
+**Course**: DSA 2040A – Data Warehousing and Mining
 ---
 
 ### 📘 Description
 
-This project demonstrates **Full Extraction** and **Incremental Extraction** in the context of ETL (Extract, Transform, Load) using a retail sales dataset. The lab is designed for **DSA 2040A – Data Warehousing and Data Mining**, and helps reinforce the practical aspects of extraction within the ETL pipeline.
+This project demonstrates **Full Extraction**, **Incremental Extraction**, **Data Transformation**, and **Data Loading** as part of an ETL pipeline using a retail sales dataset. It's designed to help reinforce practical data engineering concepts across ETL stages.
 
 ---
 
 ### 🔧 Tools Used
 
-- Python
-- pandas
-- Jupyter Notebook
+* Python
+* pandas
+* Jupyter Notebook
+* SQLite
+* Parquet (optional)
 
 ---
-## 📁 Project Folder Structure
 
-**Folder**: `ETL_Extract_AmbachowKahsay_550`
+### 📁 Project Folder Structure
 
-| File/Folder Name              | Description                                             |
-|-------------------------------|---------------------------------------------------------|
-| `etl_extract.ipynb`           | Main notebook with Full and Incremental extraction logic |
-| `etl_load.ipynb`              | Lab 5 notebook to load transformed data                 |
-| `custom_data.csv`             | Source dataset (realistic sales data)                   |
-| `transformed_full.csv`        | Transformed full dataset (cleaned, enriched)            |
-| `transformed_incremental.csv` | Transformed incremental dataset                         |
-| `last_extraction.txt`         | Stores the last extraction timestamp                    |
-| `README.md`                   | This documentation file                                 |
-| `.gitignore`                  | Excludes unnecessary or large files                     |
-| `loaded_data/`                | Output folder for databases and Parquet files           |
-| ├── `full_data.db`            | SQLite database for full dataset                        |
-| ├── `incremental_data.db`     | SQLite database for incremental dataset                 |
-| └── `full_data.parquet`       | Parquet file containing full dataset                    |
-
----
+```
+ETL_Extract_AmbachowKahsay_550/
+├── custom_data.csv                # Raw dataset
+├── etl_extract.ipynb             # Full & Incremental Extraction
+├── etl_load.ipynb                # Data Loading (Lab 5)
+├── transformed_full.csv          # Transformed full dataset
+├── transformed_incremental.csv   # Transformed incremental dataset
+├── last_extraction.txt           # Timestamp for incremental logic
+├── .gitignore                    # Files to exclude in GitHub
+├── README.md                     # Project documentation
+└── loaded_data/
+    ├── full_data.db              # Full dataset in SQLite
+    ├── incremental_data.db       # Incremental dataset in SQLite
+```
 
 ---
 
 ## 🔍 Dataset
 
-- **Filename**: `custom_data.csv`  
-- **Description**: Simulated retail transactions  
-- **Source**: [Download here](https://github.com/aykahsay/ETL-Extract-AmabchowKahsay/raw/main/custom_data.csv)
+* **Name**: Retail Sales Dataset
+* **Source**: [Kaggle – Mohammad Talib786](https://www.kaggle.com/datasets/mohammadtalib786/retail-sales-dataset)
+* **Description**: Contains simulated retail transactions including fields like `Transaction ID`, `Date`, `Customer ID`, `Gender`, `Age`, `Product Category`, `Quantity`,and  `Price per Unit`.
 
 ---
 
 ## 🔄 Lab 3 – Extraction
 
-**Features:**
+* **Full Extraction**: Loads the entire dataset and prints structure + summary.
+* **Incremental Extraction**: Extracts only records newer than the timestamp saved in `last_extraction.txt`.
+* **Timestamp Update**: Automatically updates after successful incremental extraction.
 
-- **Full Extraction**: Loads the entire dataset and shows summary stats.
-- **Incremental Extraction**: Filters new rows based on a saved timestamp (`last_extraction.txt`).
-- **Timestamp Update**: Automatically updates the extraction time after each run.
+️✅ Output: Preview of data, extraction logs, and filtered results.
 
 ---
 
 ## 🔁 Lab 4 – Transformation
 
-**Three Key Transformations:**
+Applied **3+ transformations** on both full and incremental data:
 
-1. **Cleaning**:
-   - Removed duplicate records
-   - Filled missing values in `Quantity` and `Price per Unit`
+### ✅ Cleaning
 
-2. **Enrichment**:
-   - Created a new `Total Price` column = `Quantity × Price per Unit`
+* Removed duplicate rows
+* Handled missing and inconsistent values
+* Standardized column formats
 
-3. **Structural**:
-   - Standardized `Date` column to proper datetime format
+### ✅ Enrichment
 
-**Outputs:**
+* Added `Total Amount = Quantity × Price per Unit`
+* Categorized `Age` into groups (e.g., 18–25, 26–35, etc.)
 
-- `transformed_full.csv`
-- `transformed_incremental.csv`
+### ✅ Structural
+
+* Converted `Date` column to datetime format
+* Renamed or formatted columns for clarity
+
+️✅ Output:
+
+* `transformed_full.csv`
+* `transformed_incremental.csv`
 
 ---
 
-## 📦 Lab 5 – Load
+## 📂 Lab 5 – Load
 
-**Goal**: Load transformed datasets into a structured database (SQLite)
+Data was loaded into structured formats:
 
-**SQLite Output Files:**
+### ✅ SQLite
 
-- `loaded_data/full_data.db`
-- `loaded_data/incremental_data.db`
+* Full data → `loaded_data/full_data.db`
+* Incremental data → `loaded_data/incremental_data.db`
 
-**Example Table Schema**:
+### ✅ Example Schema
 
 ```sql
 CREATE TABLE data (
@@ -97,22 +103,45 @@ CREATE TABLE data (
     Age INTEGER,
     Product_Category TEXT,
     Quantity INTEGER,
-    Price_per_Unit INTEGER,
-    Total_Amount INTEGER
+    Price_per_Unit REAL,
+    Total_Amount REAL
 );
 ```
+
 ---
 
-## How to Run
-1. Ensure Python and Jupyter are installed
-2. Install required packages: `pip install pandas`
-3. Open the notebook: `jupyter notebook etl_extract.ipynb`
-4. Run all cells sequentially
+## ▶️ How to Run
 
-### 🧪 How to Reproduce
+1. Install requirements:
 
-1. Clone the repository:
    ```bash
-   git clone https://github.com/aykahsay/ETL-Extract-AmabchowKahsay.git
-   cd ETL-Extract-AmabchowKahsay
-   Source: Downloaded from Kaggle
+   pip install pandas
+   ```
+
+2. Run extraction:
+
+   ```bash
+   jupyter notebook etl_extract.ipynb
+   ```
+
+3. Run loading:
+
+   ```bash
+   jupyter notebook etl_load.ipynb
+   ```
+
+---
+
+## 📆 .gitignore Example
+
+```
+.ipynb_checkpoints/
+__pycache__/
+*.log
+*.db
+*.parquet
+last_extraction.txt
+loaded_data/
+```
+
+---
