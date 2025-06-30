@@ -27,7 +27,7 @@ This project demonstrates **Full Extraction** and **Incremental Extraction** in 
 | `README.md`            | This documentation                              |
 
 ---
-### 🔄 Transformations (Lab 5)
+### 🔄 Transformations (Lab 4)
 
 This lab extends the ETL pipeline by applying three transformation techniques:
 
@@ -39,13 +39,28 @@ Transformed datasets are saved as:
 
 - `transformed_full.csv`
 - `transformed_incremental.csv` No new incremental data to transform.
+##  Load (Lab 5)
+
+This notebook (`etl_load.ipynb`) loads the transformed datasets into structured SQLite databases.
+
+### Method Used:
+- **SQLite**: Full and incremental transformed CSVs are loaded into `full_data.db` and `incremental_data.db` respectively under `loaded_data/`.
+
+### Tables:
+- `full_data` – from `transformed_full.csv`
+- `incremental_data` – from `transformed_incremental.csv`
+
+### Example SQL Preview:
+```sql
+SELECT * FROM full_data LIMIT 5;
 
 ## How to Run
 1. Ensure Python and Jupyter are installed
 2. Install required packages: `pip install pandas`
 3. Open the notebook: `jupyter notebook etl_extract.ipynb`
 4. Run all cells sequentially
-
+```
+---
 ### 🧪 How to Reproduce
 
 1. Clone the repository:
