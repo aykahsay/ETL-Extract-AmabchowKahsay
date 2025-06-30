@@ -15,31 +15,93 @@ This project demonstrates **Full Extraction** and **Incremental Extraction** in 
 - Jupyter Notebook
 
 ---
+## 📁 Project Folder Structure
 
-### 📁 ETL_Extract_AmbachowKahsay_550 folder Includes the following files
+**Folder**: `ETL_Extract_AmbachowKahsay_550`
 
-| File Name              | Description                                     |
-|------------------------|-------------------------------------------------|
-| `etl_extract.ipynb`    | Main notebook with full and incremental ETL     |
-| `custom_data.csv`      | Dataset used (realistic sales data)             |
-| `last_extraction.txt`  | Stores the last extraction timestamp            |
-| `.gitignore`           | Git ignore file for unnecessary files           |
-| `README.md`            | This documentation                              |
+| File/Folder Name              | Description                                             |
+|-------------------------------|---------------------------------------------------------|
+| `etl_extract.ipynb`           | Main notebook with Full and Incremental extraction logic |
+| `etl_load.ipynb`              | Lab 5 notebook to load transformed data                 |
+| `custom_data.csv`             | Source dataset (realistic sales data)                   |
+| `transformed_full.csv`        | Transformed full dataset (cleaned, enriched)            |
+| `transformed_incremental.csv` | Transformed incremental dataset                         |
+| `last_extraction.txt`         | Stores the last extraction timestamp                    |
+| `README.md`                   | This documentation file                                 |
+| `.gitignore`                  | Excludes unnecessary or large files                     |
+| `loaded_data/`                | Output folder for databases and Parquet files           |
+| ├── `full_data.db`            | SQLite database for full dataset                        |
+| ├── `incremental_data.db`     | SQLite database for incremental dataset                 |
+| └── `full_data.parquet`       | Parquet file containing full dataset                    |
 
 ---
 
-## 🔄 Transformations (Lab 4)
+---
 
-This lab extends the ETL pipeline by applying three transformation techniques:
+## 🔍 Dataset
 
-1. **Cleaning**: Removed duplicate rows and filled missing values in `unit_price` and `quantity`.
-2. **Enrichment**: Created a new `total_price` column by multiplying `unit_price * quantity`.
-3. **Structural**: Converted the `date` column to a proper datetime format.
+- **Filename**: `custom_data.csv`  
+- **Description**: Simulated retail transactions  
+- **Source**: [Download here](https://github.com/aykahsay/ETL-Extract-AmabchowKahsay/raw/main/custom_data.csv)
 
-Transformed datasets are saved as:
+---
+
+## 🔄 Lab 3 – Extraction
+
+**Features:**
+
+- **Full Extraction**: Loads the entire dataset and shows summary stats.
+- **Incremental Extraction**: Filters new rows based on a saved timestamp (`last_extraction.txt`).
+- **Timestamp Update**: Automatically updates the extraction time after each run.
+
+---
+
+## 🔁 Lab 4 – Transformation
+
+**Three Key Transformations:**
+
+1. **Cleaning**:
+   - Removed duplicate records
+   - Filled missing values in `Quantity` and `Price per Unit`
+
+2. **Enrichment**:
+   - Created a new `Total Price` column = `Quantity × Price per Unit`
+
+3. **Structural**:
+   - Standardized `Date` column to proper datetime format
+
+**Outputs:**
 
 - `transformed_full.csv`
 - `transformed_incremental.csv`
+
+---
+
+## 📦 Lab 5 – Load
+
+**Goal**: Load transformed datasets into a structured database (SQLite)
+
+**SQLite Output Files:**
+
+- `loaded_data/full_data.db`
+- `loaded_data/incremental_data.db`
+
+**Example Table Schema**:
+
+```sql
+CREATE TABLE data (
+    Transaction_ID INTEGER,
+    Date TEXT,
+    Customer_ID TEXT,
+    Gender TEXT,
+    Age INTEGER,
+    Product_Category TEXT,
+    Quantity INTEGER,
+    Price_per_Unit INTEGER,
+    Total_Amount INTEGER
+);
+```
+---
 
 ## How to Run
 1. Ensure Python and Jupyter are installed
