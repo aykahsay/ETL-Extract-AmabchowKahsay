@@ -16,7 +16,7 @@ This project demonstrates **Full Extraction** and **Incremental Extraction** in 
 
 ---
 
-### 📁 Files Included
+### 📁 ETL_Extract_AmbachowKahsay_550 folder Includes the following files
 
 | File Name              | Description                                     |
 |------------------------|-------------------------------------------------|
